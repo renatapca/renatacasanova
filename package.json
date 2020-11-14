@@ -1,0 +1,19 @@
+{
+  "name": "mypage",
+  "version": "1.0.0",
+  "description": "meu website feito no quasar - vuejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renatapca/renatacasanova.git"
+  },
+  "author": "Renata Casanova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renatapca/renatacasanova/issues"
+  },
+  "homepage": "https://github.com/renatapca/renatacasanova#readme"
+}
