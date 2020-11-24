@@ -1,107 +1,64 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
+    <q-layout view="lHh Lpr lFf" class="shadow-2" >
+    <q-header elevated >
+        <q-toolbar  class="q-pa-md">
+          <q-btn @click="left = !left" style="color:purple" flat round dense icon="menu" class="q-mr-sm" />
+            <q-btn flat to="/"><q-img src="..//assets/myname.png" width="500px" /></q-btn>
+          <q-toolbar-title></q-toolbar-title>
+        </q-toolbar>
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <q-tabs style="color:purple" class="q-ma-md" v-model="tab">
+          <q-route-tab
+          v-for="nav in navs"
+          :key="nav.label"
+          :to="nav.to"
+          :label="nav.label" />
 
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
-    >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+        </q-tabs>
+      </q-header  >
+       <q-drawer v-model="left" side="left" bordered>
+      <!-- drawer content -->
     </q-drawer>
-
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+      <q-footer elevated>
+        <q-toolbar class="glossy">
+          <q-toolbar-title style="color:purple">Criado por Renata Casanova</q-toolbar-title>
+        </q-toolbar>
+      </q-footer>
+      <q-page-container>
+        <router-view />
+      </q-page-container>
+    </q-layout>
 </template>
-
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksData = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
+import { openURL } from 'quasar'
 
 export default {
-  name: 'MainLayout',
-  components: { EssentialLink },
+  name: 'MyLayout',
   data () {
     return {
-      leftDrawerOpen: false,
-      essentialLinks: linksData
+      left: false,
+      navs: [
+        {
+          label: 'Sobre Mim',
+          to: '/formacao'
+        },
+        {
+          label: 'PORTFOLIO',
+          to: '/portfolio'
+        },
+        {
+          label: 'CERTIFICADOS',
+          to: '/certificados'
+        },
+        {
+          label: 'CONTATO',
+          to: '/contato'
+        }
+      ]
     }
+  },
+  methods: {
+    openURL
   }
 }
 </script>
